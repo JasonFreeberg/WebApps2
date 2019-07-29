@@ -2,7 +2,26 @@
 on: ["push", "pull-request"]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - run: env
+    
+    # install dependencies, build, and test
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm run build --if-present
+        npm run test --if-present
+  
+    - name: archive myapp
+      run: |
+        zip -r myapp.zip .
+   
+    # deploy web app using publish profile
+    - uses: azure/appservice-actions/webapp@master
+      with: 
+        app-name: node-rn
+        package: './myapp.zip'
+        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+
+

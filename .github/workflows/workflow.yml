@@ -16,7 +16,8 @@ jobs:
     - name: archive myapp
       run: |
         zip -r myapp.zip .
-        
+   
+    # deploy web app using publish profile
     - uses: azure/appservice-actions/webapp@master
       with: 
         app-name: node-rn

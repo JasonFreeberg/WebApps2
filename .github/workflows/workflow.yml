@@ -17,7 +17,7 @@ jobs:
       run: |
         zip -r myapp.zip .
         
-    - uses: ./webapp-deploy
+    - uses: azure/appservice-actions/webapp@master
       with: 
         app-name: node-rn
         package: './myapp.zip'

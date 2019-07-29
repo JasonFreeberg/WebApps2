@@ -1,0 +1,25 @@
+
+on: [push, pull_request]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    actions:
+    
+    # install dependencies, build, and test
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm run build --if-present
+        npm run test --if-present
+  
+    - name: archive myapp
+      run: |
+        zip -r myapp.zip .
+        
+    - uses: ./webapp-deploy
+      with: 
+        app-name: node-rn
+        package: './myapp.zip'
+        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+

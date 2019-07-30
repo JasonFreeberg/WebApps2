@@ -13,7 +13,10 @@ on: [push, pull_request]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    actions:
+    steps:
+    
+    # checkout the repo
+    - uses: actions/checkout@master    
     
     # install dependencies, build, and test
     - name: npm install, build, and test
@@ -25,13 +28,9 @@ jobs:
     - uses: azure/appservice-actions/webapp@master
       with: 
         app-name: node-rn
-        package: './myapp'
+        package: '.'
         publish-profile-xml: '${{ secrets.azureWebAppPublishProfile }}'
-      id: myapp-id
-    
-    # Web app url to work with
-    - run: echo "Deployed the webapp at ${{ actions.myapp-id.outputs.webapp-url}}"
-    
+      id: myapp-id    
 ```
 
 ### Deploy with user-level credentials
@@ -45,7 +44,10 @@ on: [push, pull_request]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    actions:
+    steps:
+    
+    # checkout the repo
+    - uses: actions/checkout@master    
     
     # install dependencies, build, and test
     - name: npm install, build, and test
@@ -64,12 +66,11 @@ jobs:
     - uses: azure/appservice-actions/webapp@master
       with: 
         app-name: node-rn
-        package: './myapp'
+        package: '.'
       id: myapp-id
       
     # Web app url to work with
     - run: echo "Deployed the webapp at ${{ actions.myapp-id.outputs.webapp-url}}"
-    
 ```
 
 ### Azure web app action metadata file

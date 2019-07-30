@@ -22,7 +22,7 @@ jobs:
         npm run build --if-present
         npm run test --if-present
   
-    - uses: ./webapp-deploy
+    - uses: azure/appservice-actions/webapp@master
       with: 
         app-name: node-rn
         package: './myapp'
@@ -61,7 +61,7 @@ jobs:
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         
-    - uses: ./webapp-deploy
+    - uses: azure/appservice-actions/webapp@master
       with: 
         app-name: node-rn
         package: './myapp'

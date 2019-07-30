@@ -1,4 +1,4 @@
-# Sample NodeJS application for GitHub Actions
+# Sample NodeJS application for GitHub Actions 
 
 Sample workflow to build and deploy node js app
 

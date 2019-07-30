@@ -1,0 +1,25 @@
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/k8s-actions/docker-login@master
+      with:
+        loginServer: ronacr.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+        email: ronai@microsoft.com
+    
+    - run: |
+        docker build . -t ronacr.azurecr.io/nodejssampleapp:latest
+        docker push ronacr.azurecr.io/nodejssampleapp:latest 
+      
+   - name: Deploy web app  
+      uses: azure/appservice-actions/webapp-container@master
+      with:
+        app-name: 'rondocker'
+        images: 'ronacr.azurecr.io/nodejssampleapp:latest'
+      id: webapp-id

@@ -14,11 +14,11 @@ jobs:
         email: ronai@microsoft.com
     
     - run: |
-        docker build . -t ronacr.azurecr.io/nodejssampleapp:latest
-        docker push ronacr.azurecr.io/nodejssampleapp:latest 
+        docker build . -t ronacr.azurecr.io/nodejssampleapp:${{ github.sha }}
+        docker push ronacr.azurecr.io/nodejssampleapp:${{ github.sha }} 
       
     - uses: azure/appservice-actions/webapp-container@master
       with:
         app-name: 'rondocker'
-        images: 'ronacr.azurecr.io/nodejssampleapp:latest'
+        images: 'ronacr.azurecr.io/nodejssampleapp:${{ github.sha }}'
         id: webapp-id

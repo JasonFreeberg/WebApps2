@@ -33,46 +33,6 @@ jobs:
       id: myapp-id    
 ```
 
-### Deploy with user-level credentials
-
-```yaml
-
-# File: .github/workflows/workflow.yml
-
-on: [push, pull_request]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    
-    # checkout the repo
-    - uses: actions/checkout@master    
-    
-    # install dependencies, build, and test
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-
-    # Login to Azure Subscription. 
-    # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS 
-    - name: Azure login
-      uses: azure/login-action@master
-      with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        
-    - uses: azure/appservice-actions/webapp@master
-      with: 
-        app-name: node-rn
-        package: '.'
-      id: myapp-id
-      
-    # Web app url to work with
-    - run: echo "Deployed the webapp at ${{ actions.myapp-id.outputs.webapp-url}}"
-```
-
 ### Azure web app action metadata file
 
 The action.yml file contains metadata about the Azure web app action.  
@@ -103,8 +63,6 @@ runs:
   using: 'node'
   main: 'main.js'
 ```
-
-
 
 # Contributing
 

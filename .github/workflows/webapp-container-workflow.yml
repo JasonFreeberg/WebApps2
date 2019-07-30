@@ -1,7 +1,7 @@
-on: [push]
+on: push
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -17,9 +17,8 @@ jobs:
         docker build . -t ronacr.azurecr.io/nodejssampleapp:latest
         docker push ronacr.azurecr.io/nodejssampleapp:latest 
       
-   - name: Deploy web app  
-      uses: azure/appservice-actions/webapp-container@master
+    - uses: azure/appservice-actions/webapp-container@master
       with:
         app-name: 'rondocker'
         images: 'ronacr.azurecr.io/nodejssampleapp:latest'
-      id: webapp-id
+        id: webapp-id

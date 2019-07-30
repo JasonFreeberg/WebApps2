@@ -4,6 +4,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@master
     
     # install dependencies, build, and test
     - name: npm install, build, and test

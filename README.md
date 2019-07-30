@@ -29,7 +29,7 @@ jobs:
       with: 
         app-name: node-rn
         package: '.'
-        publish-profile-xml: '${{ secrets.azureWebAppPublishProfile }}'
+        publish-profile: '${{ secrets.azureWebAppPublishProfile }}'
       id: myapp-id    
 ```
 

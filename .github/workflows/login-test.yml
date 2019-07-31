@@ -6,7 +6,7 @@ jobs:
     steps:
     # checkout the repo
     - uses: actions/checkout@master
-    - uses: azure/appservice-actions/azure-login
+    - uses: azure/appservice-actions/azure-login@master
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     

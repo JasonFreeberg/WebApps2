@@ -1,4 +1,4 @@
-on: push
+on: [push,pullrequest]
 
 jobs:
   build-and-deploy:
@@ -8,7 +8,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: azure/appservice-actions/azure-login
       with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     
     # install dependencies, build, and test
     - name: npm install, build, and test

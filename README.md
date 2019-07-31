@@ -64,21 +64,26 @@ runs:
   main: 'main.js'
 ```
 
-### To test drive this sample NodeJS app using GitHub Azure WebApp action @ https://github.com/bbq-beets/WebApps 
+### To test drive this sample NodeJS app using GitHub Azure WebApp action 
 
 * You can create a separate branch using the sample code in master 
-* To deploy the sample web app to your own subscription / web app (Node Js)
+* To deploy the sample web app to your own subscription / web app (Node Js):
     * Download the publish profile from the portal (Get Publish profile option)
     * Define a new secret under https://github.com/bbq-beets/WebApps/settings/secrets > “Add a new secret” 
     * Paste the contents for the downloaded publish profile file into the secret value field and add your secret
-    * Now in the workflow file in your branch: .github/workflows/workflow.yml
-        * Replace the secret name with your secret
+    * Now in the workflow file in your branch: `.github/workflows/workflow.yml`
+        * Replace the secret name with your secret (Refer below)
+
+
 ```yaml
-- uses: azure/appservice-actions/webapp@master	
-	with:
-	app-name: node-rn
-	package: '.'
-	publish-profile: ${{ secrets.<your secret name here> }}
+
+    - uses: azure/appservice-actions/webapp@master
+      with: 
+        app-name: node-rn
+        package: '.'
+        publish-profile: '${{ secrets.<your secret name here> }}'
+      id: myapp-id  
+      
 ```
 
 # Contributing

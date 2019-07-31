@@ -1,0 +1,28 @@
+on: push
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    # checkout the repo
+    - uses: actions/checkout@master
+    - uses: azure/appservice-actions/azure-login
+      with:
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+    
+    # install dependencies, build, and test
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm run build --if-present
+        npm run test --if-present
+        
+    - name: archive myapp
+      run: |
+        zip -r myapp.zip .
+   
+    # deploy web app using publish profile credentials
+    - uses: azure/appservice-actions/webapp@master
+      with: 
+        app-name: node-sa
+        package: '.'

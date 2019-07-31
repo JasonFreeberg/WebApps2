@@ -18,5 +18,4 @@ jobs:
     - uses: azure/appservice-actions/webapp@9fe7256
       with: 
         app-name: node-rn
-        package: '*'
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}

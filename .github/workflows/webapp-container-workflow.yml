@@ -11,7 +11,7 @@ jobs:
 
     - uses: actions/checkout@master
     
-    - uses: azure/actions/azure-login@master
+    - uses: azure/actions/login@master
       with:
         creds: ${{ secrets.RNAzureCreds }}
 

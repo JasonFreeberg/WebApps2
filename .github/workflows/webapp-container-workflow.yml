@@ -17,7 +17,7 @@ jobs:
 
     - uses: azure/k8s-actions/docker-login@master
       with:
-        loginServer: ronacr.azurecr.io
+        login-server: ronacr.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     

@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # checkout the repo
-    - uses: actions/checkout@sisirap-webapps-actions
+    - uses: actions/checkout@master
     
     # install dependencies, build, and test
     - name: npm install, build, and test

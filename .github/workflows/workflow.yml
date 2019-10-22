@@ -1,4 +1,4 @@
-Name: Build and deploy node app to App Service
+name: Build and deploy node app to App Service
 
 on: push
 

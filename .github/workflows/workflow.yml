@@ -11,6 +11,11 @@ jobs:
     # checkout the repo
     - uses: actions/checkout@master
     
+    # Set Node version for build
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '6.x'
+
     # install dependencies, build, and test
     - name: npm install, build, and test
       run: |
